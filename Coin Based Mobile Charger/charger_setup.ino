@@ -4,17 +4,18 @@ volatile byte relayState = LOW;
 int COINinterrupt=2;
 
 long lastdetectiontime=0;
-long chargingTIME=60000;
+long chargingTIME=60000; //defining the charging time
 
 void setup() {
   // put your setup code here, to run once:
 pinMode(relay, OUTPUT);
 digitalWrite(relay, HIGH);
 pinMode(COINinterrupt, INPUT);
-attachInterrupt(digitalPinToInterrupt(COINinterrupt), detectCoin, RISING);
+attachInterrupt(digitalPinToInterrupt(COINinterrupt), detectCoin, RISING); //start charging after detecting the coin
 Serial.begin(9600); 
 }
 
+//coin is detected when the relay state goes high
 void detectCoin()
 {
  Serial.println("Coin detected");
